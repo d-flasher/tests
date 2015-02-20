@@ -43,7 +43,19 @@ package sampleSuite.tests
 		[Test]
 		public function substraction():void
 		{
-			Assert.assertEquals(8, count - 2);
+			Assert.assertEquals(8, count - 2, 10 - 1);
+			Assert.assertEquals(8, count - 2, 10 - 2);
+
+			//Assert.assertFalse(6 == count - 2);
+		}
+
+		[Test]
+		public function substraction1():void
+		{
+			Assert.assertEquals(8, count - 2, 10 - 1);
+			Assert.assertEquals(8, count - 2, 10 - 2);
+
+			//Assert.assertFalse(6 == count - 2);
 		}
 
 		[Test( description = "This tests addition" )]
