@@ -11,8 +11,9 @@
 		import org.flexunit.flexui.data.filter.ITestFunctionStatus;
 		import org.flexunit.internals.TextListener;
 		import org.flexunit.runner.FlexUnitCore;
+		import org.flexunit.runner.IRunner;
+		import org.flexunit.runners.Suite;
 		import ru.dflasher.utils.ServiceUtil;
-		import sampleSuite.SampleSuite;
 
 		private var core:FlexUnitCore;
 
@@ -23,9 +24,9 @@
             core.addListener(uiListener);
 			//core.addListener(TextListener.getDefaultTextListener(LogEventLevel.DEBUG));
 
-            core.run(SampleSuite);
+            core.run(BaseSuite);
 
-			ServiceUtil.timeOut(0.2, selectAllTest);
+			ServiceUtil.timeOut(0.5, selectAllTest);
 		}
 
 		private function selectAllTest():void

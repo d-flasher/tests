@@ -1,7 +1,5 @@
-package sampleSuite
+package suites.tests1
 {
-	import sampleSuite.tests.TestCase1;
-
 	/**
 	 * ...
 	 * @author SitdikovDR (sdr-u@mail.ru)
@@ -10,7 +8,7 @@ package sampleSuite
 	[RunWith("org.flexunit.runners.Suite")]
 	public class SampleSuite
 	{
-		public var t1:TestCase1;
+		public var t:TestCase1;
 	}
 
 }

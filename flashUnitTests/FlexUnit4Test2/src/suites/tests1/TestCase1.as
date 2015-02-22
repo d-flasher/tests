@@ -1,6 +1,10 @@
-package sampleSuite.tests
+package suites.tests1
 {
+	import flash.geom.Point;
+	import matcher.CloseToPointMatcher;
 	import org.flexunit.Assert;
+	import org.flexunit.assertThat;
+
 	/**
 	 * ...
 	 * @author SitdikovDR (sdr-u@mail.ru)
@@ -43,27 +47,41 @@ package sampleSuite.tests
 		[Test]
 		public function substraction():void
 		{
-			Assert.assertEquals(8, count - 2, 10 - 1);
-			Assert.assertEquals(8, count - 2, 10 - 2);
-
-			//Assert.assertFalse(6 == count - 2);
+			Assert.assertFalse(8 == 7);
 		}
 
+		[Ignore(description="Rtt112")]
 		[Test]
 		public function substraction1():void
 		{
-			Assert.assertEquals(8, count - 2, 10 - 1);
 			Assert.assertEquals(8, count - 2, 10 - 2);
-
-			//Assert.assertFalse(6 == count - 2);
 		}
 
-		[Test( description = "This tests addition" )]
+		[Test(description = "This tests addition")]
 		public function simpleAdd():void
 		{
 			var x:int = 5 + 3;
 			Assert.assertEquals( 8, x );
 		}
+
+		[Test]
+		public function substaction2():void
+		{
+			//assertThat(5, closeTo(4.99, 0.01));
+			assertThat(
+				new Point(5, 0.1),
+				new CloseToPointMatcher(new Point(5, 0), 0.1)
+			);
+		}
+
+		[Test(expects="Error")]
+		public function throErrorTest():void
+		{
+			var n:Object;
+			Assert.assertTrue(n['tt']);
+		}
+
+
 	}
 
 }
