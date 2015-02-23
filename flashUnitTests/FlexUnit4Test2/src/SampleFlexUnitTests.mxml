@@ -5,6 +5,7 @@
 
 	<fx:Script>
 	<![CDATA[
+		import flash.events.Event;
 		import flash.events.MouseEvent;
 		import mx.logging.LogEventLevel;
 		import org.flexunit.flexui.controls.left.events.SearchBarEvent;
@@ -26,7 +27,12 @@
 
             core.run(BaseSuite);
 
-			ServiceUtil.timeOut(0.5, selectAllTest);
+			core.addEventListener(FlexUnitCore.TESTS_COMPLETE, onTestsComplete);
+		}
+
+		private function onTestsComplete(event:Event):void
+		{
+			selectAllTest();
 		}
 
 		private function selectAllTest():void
