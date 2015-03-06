@@ -1,0 +1,5 @@
+*.as3proj
+*.swf
+*/bin/index.html
+*swfobject.js
+*obj
