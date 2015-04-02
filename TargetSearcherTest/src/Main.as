@@ -1,6 +1,6 @@
 package
 {
-	import ai3.core.scenario.batch.targetSelector.Modificator;
+	import ai3.core.scenario.batch.targetSelector.Modifier;
 	import ai3.core.scenario.batch.targetSelector.TargetPointSelector;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -40,20 +40,21 @@ package
 
 			trace(1, targets);
 
-			var modificator1:Modificator = new Modificator();
-			modificator1.init(Modificator.TYPE_ARRAY, Modificator.NAME_SORT, '[distance][100]');
+			var modifier1:Modifier = new Modifier();
+			modifier1.init(Modifier.TYPE_ARRAY, Modifier.NAME_SORT, '[isoX][100]');
 
 			var tps:TargetPointSelector = new TargetPointSelector();
 			tps.setTargets(targets);
 			tps.addEventListener(TargetPointSelector.WORK_COMPLETE, onTpsWorkComplete);
-			tps.startWork(new <Modificator>[modificator1]);
+			tps.addMofifier(modifier1);
+			tps.startWork();
 
-			trace(2, targets);
+			trace(2, tps.targets);
 		}
 
 		private function onTpsWorkComplete(event:Event):void
 		{
-			trace(1, TargetPointSelector(event.target).result);
+			trace(3, TargetPointSelector(event.target).targets);
 		}
 
 		//private const MOD_XML:XML = <mod chain="arr.sort([distance][100])->arr.slice(0,1)->item.line_move()"/>;
