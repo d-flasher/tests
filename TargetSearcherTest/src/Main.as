@@ -1,6 +1,8 @@
 package
 {
-	import ai3.core.scenario.batch.targetSelector.Modifier;
+	import ai3.core.scenario.batch.targetSelector.modifiers.IModifier;
+	import ai3.core.scenario.batch.targetSelector.modifiers.ModifierArraySlice;
+	import ai3.core.scenario.batch.targetSelector.modifiers.ModifierArraySort;
 	import ai3.core.scenario.batch.targetSelector.TargetPointSelector;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -26,6 +28,8 @@ package
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
 
+			var bot:MokoBot = new MokoBot();
+
 			var targets:Vector.<MokoScannedObj> = new Vector.<MokoScannedObj>();
 			for (var i:int = 0; i < 4; i++)
 			{
@@ -40,13 +44,11 @@ package
 
 			trace(1, targets);
 
-			var modifier1:Modifier = new Modifier();
-			modifier1.init(Modifier.TYPE_ARRAY, Modifier.NAME_SORT, '[isoX][100]');
-
 			var tps:TargetPointSelector = new TargetPointSelector();
-			tps.setTargets(targets);
+			tps.setTargets(bot, targets);
 			tps.addEventListener(TargetPointSelector.WORK_COMPLETE, onTpsWorkComplete);
-			tps.addMofifier(modifier1);
+			tps.addMofifier(new ModifierArraySort('[isoX][100]'));
+			tps.addMofifier(new ModifierArraySlice(0, 2));
 			tps.startWork();
 
 			trace(2, tps.targets);
@@ -58,7 +60,6 @@ package
 		}
 
 		//private const MOD_XML:XML = <mod chain="arr.sort([distance][100])->arr.slice(0,1)->item.line_move()"/>;
-
 	}
 
 }
